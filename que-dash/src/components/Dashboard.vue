@@ -38,14 +38,18 @@
         <!-- Sidebar -->
         <q-drawer v-model="drawerModel" side="left" show-if-above>
             <q-list>
-                <q-item clickable @click="navigateToPage('/dashboard')" v-close-popup>
+                <q-item clickable @click="navigateToPage('tabulator')" v-close-popup>
                     <q-item-section>
-                        <q-item-label>Dashboard</q-item-label>
+                        <q-item-label>Tabulator</q-item-label>
                     </q-item-section>
                 </q-item>
                 <!-- Add more sidebar items as needed -->
             </q-list>
         </q-drawer>
+
+        <q-page-container>
+      <router-view />
+    </q-page-container>
     </q-layout>
 </template>
   
@@ -55,7 +59,7 @@ import { ref, defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 
 export default defineComponent({
-    name: 'nav-bar',
+    name: 'dashboard-component',
     setup() {
         const router = useRouter();
 

@@ -10,11 +10,12 @@ const routes = [
   },
   {
     path: "/dashboard",
-    component: () => import("../components/Tabulator.vue"),
+    component: () => import("../components/Dashboard.vue"),
+    children: [
+      { path: '', component: () => import("../pages/Home.vue")},
+      { path: '/tabulator', component: () => import("../pages/Tabulator.vue")}
+    ]
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
   {
     path: "/:catchAll(.*)*",
     component: () => import("pages/ErrorNotFound.vue"),

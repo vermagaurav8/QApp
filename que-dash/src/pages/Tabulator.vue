@@ -1,7 +1,8 @@
 <script>
 import { TabulatorFull as Tabulator } from 'tabulator-tables'; //import Tabulator library
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
     name: 'TabuLator',
     data() {
         return {
@@ -9,6 +10,11 @@ export default {
             tableData: [
                 { id: 1, name: 'John Doe', age: 30 },
                 { id: 2, name: 'Jane Doe', age: 25 },
+                { id: 2, name: 'Jane Doe', age: 25 },
+                { id: 2, name: 'Jane Doe', age: 25 },
+                { id: 2, name: 'Jane Doe', age: 25 },
+                { id: 2, name: 'Jane Doe', age: 25 },
+
             ], //data for table to display
         }
     },
@@ -24,7 +30,7 @@ export default {
             ], //define table columns
         });
     }
-}
+});
 </script>
 
 <template>

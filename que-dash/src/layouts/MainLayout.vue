@@ -52,7 +52,6 @@ export default defineComponent({
     const signIn = () => {
       socket.emit('login', { token: password });
       socket.on('redirect', (destination) => {
-        console.log(destination);
         router.push(destination);
       })
     }
