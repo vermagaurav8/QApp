@@ -1,3 +1,8 @@
+<!-- 
+  1. MainLayout.vue is the main component for our app
+  2. The Login Page for the app, handle basic authentication.
+ -->
+
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-page-container>
@@ -23,6 +28,7 @@
           </q-card-section>
         </q-card>
       </q-page>
+      <router-view></router-view>
     </q-page-container>
   </q-layout>
 </template>
@@ -31,7 +37,7 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-import router from 'src/router/index';
+import { useRouter } from "vue-router";
 import io from 'socket.io-client';
 
 const socket = io('http://localhost:3000');
@@ -39,14 +45,15 @@ const socket = io('http://localhost:3000');
 export default defineComponent({
   name: "MainLayout",
   setup() {
+    const router = useRouter();
     const email = ref("");
     const password = ref("");
 
     const signIn = () => {
-
       socket.emit('login', { token: password });
       socket.on('redirect', (destination) => {
-        router.push({path : destination});
+        console.log(destination);
+        router.push(destination);
       })
     }
 
