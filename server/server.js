@@ -14,11 +14,11 @@ const server = http.createServer(app);
 const io = socketIO(server);
 
 // allowing requests from cross origin
-app.use(cors({origin: '*'}));
+app.use(cors());
 
 // Event Listner for incoming WS Connections 
 io.on('connection', (socket) => {
-    console.log('Client connected');
+    // console.log('Client connected');
 
     socket.on('login', (data) => {
         if(validateToken(data.token)) {
@@ -35,8 +35,9 @@ io.on('connection', (socket) => {
 
 });
 
+// Pseudo Auth validator
 const validateToken = (token) => {
-    if(token === 'admin') {
+    if(token._value === 'admin') {
         return true;
     }
     return false;
