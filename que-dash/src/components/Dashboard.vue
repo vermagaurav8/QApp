@@ -1,7 +1,7 @@
 <!-- Navbar and Sidebar Component -->
 
 <template>
-    <q-layout view="lHh Lpr lFf" class="navbar-wrapper">
+    <q-layout view="lHh Lpr lFf" class="navbar-wrapper" :class="{ 'bg-dark': darkMode }">
         <!-- Navbar -->
         <q-header class="bg-color" :class="{ 'bg-dark': darkMode }">
             <q-toolbar class="nav-toolbar">
@@ -14,24 +14,24 @@
                 <!-- For Space -->
                 <q-space />
 
-                <q-btn dense flat round icon="dark_mode" class="dark-mode" @click="ToggleDarkMode" />
+                <q-btn dense flat round :icon="theme" class="dark-mode" @click="ToggleDarkMode" />
 
                 <!-- LANGUAGE DROPDOWN -->
-                <q-btn-dropdown class="dropdown" label="Eng" dropdown-icon="arrow_drop_down" no-caps>
+                <q-btn-dropdown class="dropdown" :label="currentLang" dropdown-icon="arrow_drop_down" no-caps>
                     <q-list class="bg-color">
-                        <q-item clickable v-close-popup>
+                        <q-item clickable @click="selectLang('english')" v-close-popup>
                             <q-item-section>
                                 <q-item-label>English</q-item-label>
                             </q-item-section>
                         </q-item>
 
-                        <q-item clickable v-close-popup>
+                        <q-item clickable @click="selectLang('hindi')" v-close-popup>
                             <q-item-section>
                                 <q-item-label>हिंदी</q-item-label>
                             </q-item-section>
                         </q-item>
 
-                        <q-item clickable v-close-popup>
+                        <q-item clickable @click="selectLang('German')" v-close-popup>
                             <q-item-section>
                                 <q-item-label>Deutsch</q-item-label>
                             </q-item-section>
@@ -76,7 +76,7 @@
         </q-header>
 
         <!-- Sidebar -->
-        <q-drawer v-model="drawerModel" side="left" show-if-above bordered :width='220' :breakpoint="400">
+        <q-drawer v-model="drawerModel" side="left" show-if-above bordered :width='300' :breakpoint="400">
 
             <q-img class="sidebar-image" src="https://cdn.quasar.dev/img/material.png" style="height: 150px">
                 <div class="absolute-bottom bg-transparent">
@@ -91,63 +91,60 @@
             <q-list>
                 <!-- HOME -->
                 <q-item class="sidebar-item" clickable @click="navigateToPage('dashboard')" v-close-popup>
+                    <q-item-section avatar>
+                        <q-icon class="sidebar-icon" name="home" size="30px" />
+                    </q-item-section>
                     <q-item-section>
-                        <q-item-label class="sidebar-label">
-                            <q-icon class="sidebar-icon" name="home" size="30px" />
-                            Home
-                        </q-item-label>
+                        <q-item-label class="sidebar-label">Home</q-item-label>
                     </q-item-section>
                 </q-item>
 
                 <!-- TABULATOR -->
                 <q-item class="sidebar-item" clickable @click="navigateToPage('tabulator')" v-close-popup>
+                    <q-item-section avatar>
+                        <q-icon class="sidebar-icon" name="table_view" size="30px" />
+                    </q-item-section>
                     <q-item-section>
-                        <q-item-label class="sidebar-label">
-                            <q-icon class="sidebar-icon" name="table_view" size="30px" />
-                            Tabulator
-                        </q-item-label>
+                        <q-item-label class="sidebar-label">Tabulator</q-item-label>
                     </q-item-section>
                 </q-item>
 
                 <!-- PROFILE -->
                 <q-item class="sidebar-item" clickable @click="navigateToPage('profile')" v-close-popup>
+                    <q-item-section avatar>
+                        <q-icon class="sidebar-icon" name="person" size="30px" />
+                    </q-item-section>
                     <q-item-section>
-                        <q-item-label class="sidebar-label">
-                            <q-icon class="sidebar-icon" name="person" size="30px" />
-                            Profile
-                        </q-item-label>
+                        <q-item-label class="sidebar-label">Profile</q-item-label>
                     </q-item-section>
                 </q-item>
 
                 <!-- COMPONENTS DROPDOWN MODAL -->
-                <!-- Include only if it serves a purpose and provide a meaningful icon -->
-                <!-- <q-item class="sidebar-item" clickable @click="navigateToPage('components')" v-close-popup>
-            <q-item-section>
-                <q-item-label class="sidebar-label">
-                    <q-icon class="sidebar-icon" name="extension" size="30px"/>
-                    Components
-                </q-item-label>
-            </q-item-section>
-        </q-item> -->
+                <q-expansion-item label="Components" icon="menu_open" default-opened class="sidebar-label">
+                    <!-- Modal -->
+                    <q-item clickable @click="navigateToPage('modal')" v-close-popup>
+                        <q-item-section>
+                            <q-item-label class="sidebar-label1">- Modals</q-item-label>
+                        </q-item-section>
+                    </q-item>
 
-                <!-- EXCEPTION DROPDOWN -->
-                <!-- Include only if it serves a purpose and provide a meaningful icon -->
-                <!-- <q-item class="sidebar-item" clickable @click="navigateToPage('exception')" v-close-popup>
-            <q-item-section>
-                <q-item-label class="sidebar-label">
-                    <q-icon class="sidebar-icon" name="warning" size="30px"/>
-                    Exception
-                </q-item-label>
-            </q-item-section>
-        </q-item> -->
+                    <!-- Trigger -->
+                    <q-item clickable @click="navigateToPage('triggers')" v-close-popup>
+                        <q-item-section>
+                            <q-item-label class="sidebar-label1">- Triggers</q-item-label>
+                        </q-item-section>
+                    </q-item>
+                </q-expansion-item>
+
+
 
                 <!-- SETTINGS -->
                 <q-item class="sidebar-item" clickable @click="navigateToPage('settings')" v-close-popup>
+                    <q-item-section avatar>
+                        <q-icon class="sidebar-icon" name="settings" size="30px" />
+                    </q-item-section>
                     <q-item-section>
-                        <q-item-label class="sidebar-label">
-                            <q-icon class="sidebar-icon settings-item" name="settings" size="30px" />
-                            Settings
-                        </q-item-label>
+                        <q-item-label class="sidebar-label">Settings </q-item-label>
                     </q-item-section>
                 </q-item>
             </q-list>
@@ -172,6 +169,27 @@ export default defineComponent({
         const drawerModel = ref(false);
         const userMenuVisible = ref(true);
         const darkMode = ref(false);
+        const currentLang = ref('English');
+        const theme = ref('dark_mode')
+
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode !== null) {
+            darkMode.value = savedDarkMode === 'true';
+            theme.value = darkMode.value ? 'light_mode' : 'dark_mode';
+        }
+
+        const selectLang = (language) => {
+            switch (language) {
+                case 'english':
+                    currentLang.value = "English"
+                    break;
+                case 'hindi':
+                    currentLang.value = 'हिंदी';
+                    break;
+                case 'German':
+                    currentLang.value = 'Deutsch'
+            }
+        }
 
         const toggleDrawer = () => {
             drawerModel.value = !drawerModel.value;
@@ -187,7 +205,16 @@ export default defineComponent({
 
         const ToggleDarkMode = () => {
             darkMode.value = !darkMode.value;
+            if (darkMode.value) {
+                theme.value = 'light_mode';
+            } else {
+                theme.value = 'dark_mode';
+            }
+
+            localStorage.setItem('darkMode', darkMode.value.toString());
         }
+
+
 
         return {
             drawerModel,
@@ -198,6 +225,9 @@ export default defineComponent({
             signOut,
             navigateToPage,
             ToggleDarkMode,
+            selectLang,
+            theme,
+            currentLang,
             darkMode
         };
     },
@@ -239,6 +269,7 @@ export default defineComponent({
 .sidebar-item {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 12px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -255,11 +286,15 @@ export default defineComponent({
 
 .sidebar-label {
     font-size: 17px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .sidebar-image {
     position: relative;
 }
 
+.sidebar-label1 {
+    font-size: 15px;
+    margin-left: 65px;
+}
 </style>
