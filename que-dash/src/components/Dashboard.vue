@@ -1,38 +1,39 @@
-<!-- Navbar.vue Component -->
+<!-- Navbar and Sidebar Component -->
 
 <template>
     <q-layout view="lHh Lpr lFf" class="navbar-wrapper">
-        <q-header class="bg-color" :class="{ 'bg-dark': darkMode}">
+        <!-- Navbar -->
+        <q-header class="bg-color" :class="{ 'bg-dark': darkMode }">
             <q-toolbar class="nav-toolbar">
                 <q-btn dense flat round icon="menu" @click="toggleDrawer" aria-label="Toggle navigation drawer" />
 
-                <q-toolbar-title class="toolbar-title" >
+                <q-toolbar-title class="toolbar-title">
                     s3India
                 </q-toolbar-title>
 
                 <!-- For Space -->
                 <q-space />
 
-                <q-btn dense flat round icon="dark_mode" class="dark-mode" @click="ToggleDarkMode"/>
+                <q-btn dense flat round icon="dark_mode" class="dark-mode" @click="ToggleDarkMode" />
 
                 <!-- LANGUAGE DROPDOWN -->
                 <q-btn-dropdown class="dropdown" label="Eng" dropdown-icon="arrow_drop_down" no-caps>
                     <q-list class="bg-color">
-                        <q-item clickable v-close-popup >
+                        <q-item clickable v-close-popup>
                             <q-item-section>
-                                <q-item-label>Eng-US</q-item-label>
-                            </q-item-section>
-                        </q-item>
-
-                        <q-item clickable v-close-popup >
-                            <q-item-section>
-                                <q-item-label>Hindi</q-item-label>
+                                <q-item-label>English</q-item-label>
                             </q-item-section>
                         </q-item>
 
                         <q-item clickable v-close-popup>
                             <q-item-section>
-                                <q-item-label>German</q-item-label>
+                                <q-item-label>हिंदी</q-item-label>
+                            </q-item-section>
+                        </q-item>
+
+                        <q-item clickable v-close-popup>
+                            <q-item-section>
+                                <q-item-label>Deutsch</q-item-label>
                             </q-item-section>
                         </q-item>
                     </q-list>
@@ -75,51 +76,82 @@
         </q-header>
 
         <!-- Sidebar -->
-        <q-drawer v-model="drawerModel" side="left" show-if-above>
+        <q-drawer v-model="drawerModel" side="left" show-if-above bordered :width='220' :breakpoint="400">
+
+            <q-img class="sidebar-image" src="https://cdn.quasar.dev/img/material.png" style="height: 150px">
+                <div class="absolute-bottom bg-transparent">
+                    <q-avatar size="56px" class="q-mb-sm">
+                        <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+                    </q-avatar>
+                    <div class="text-weight-bold">Administrator</div>
+                    <div>@adminS3india</div>
+                </div>
+            </q-img>
+
             <q-list>
                 <!-- HOME -->
-                <q-item clickable @click="navigateToPage('dashboard')" v-close-popup>
+                <q-item class="sidebar-item" clickable @click="navigateToPage('dashboard')" v-close-popup>
                     <q-item-section>
-                        <q-item-label>Home</q-item-label>
+                        <q-item-label class="sidebar-label">
+                            <q-icon class="sidebar-icon" name="home" size="30px" />
+                            Home
+                        </q-item-label>
                     </q-item-section>
                 </q-item>
 
                 <!-- TABULATOR -->
-                <q-item clickable @click="navigateToPage('tabulator')" v-close-popup>
+                <q-item class="sidebar-item" clickable @click="navigateToPage('tabulator')" v-close-popup>
                     <q-item-section>
-                        <q-item-label>Tabulator</q-item-label>
+                        <q-item-label class="sidebar-label">
+                            <q-icon class="sidebar-icon" name="table_view" size="30px" />
+                            Tabulator
+                        </q-item-label>
                     </q-item-section>
                 </q-item>
 
-                <!-- PROFIILE -->
-                <q-item clickable @click="navigateToPage('profile')" v-close-popup>
+                <!-- PROFILE -->
+                <q-item class="sidebar-item" clickable @click="navigateToPage('profile')" v-close-popup>
                     <q-item-section>
-                        <q-item-label>Profile</q-item-label>
+                        <q-item-label class="sidebar-label">
+                            <q-icon class="sidebar-icon" name="person" size="30px" />
+                            Profile
+                        </q-item-label>
                     </q-item-section>
                 </q-item>
 
-                <!-- COPONENTS DROPDOWN MODAL -->
-                <q-item clickable @click="navigateToPage('tabulator')" v-close-popup>
-                    <q-item-section>
-                        <q-item-label>Components Dropdown</q-item-label>
-                    </q-item-section>
-                </q-item>
+                <!-- COMPONENTS DROPDOWN MODAL -->
+                <!-- Include only if it serves a purpose and provide a meaningful icon -->
+                <!-- <q-item class="sidebar-item" clickable @click="navigateToPage('components')" v-close-popup>
+            <q-item-section>
+                <q-item-label class="sidebar-label">
+                    <q-icon class="sidebar-icon" name="extension" size="30px"/>
+                    Components
+                </q-item-label>
+            </q-item-section>
+        </q-item> -->
 
                 <!-- EXCEPTION DROPDOWN -->
-                <q-item clickable @click="navigateToPage('tabulator')" v-close-popup>
-                    <q-item-section>
-                        <q-item-label>Exception Dropdown</q-item-label>
-                    </q-item-section>
-                </q-item>
+                <!-- Include only if it serves a purpose and provide a meaningful icon -->
+                <!-- <q-item class="sidebar-item" clickable @click="navigateToPage('exception')" v-close-popup>
+            <q-item-section>
+                <q-item-label class="sidebar-label">
+                    <q-icon class="sidebar-icon" name="warning" size="30px"/>
+                    Exception
+                </q-item-label>
+            </q-item-section>
+        </q-item> -->
 
-                <!-- Settings  -->
-                <q-item clickable @click="navigateToPage('settings')" v-close-popup>
+                <!-- SETTINGS -->
+                <q-item class="sidebar-item" clickable @click="navigateToPage('settings')" v-close-popup>
                     <q-item-section>
-                        <q-item-label>Settingd</q-item-label>
+                        <q-item-label class="sidebar-label">
+                            <q-icon class="sidebar-icon settings-item" name="settings" size="30px" />
+                            Settings
+                        </q-item-label>
                     </q-item-section>
                 </q-item>
-                <!-- Add more sidebar items as needed -->
             </q-list>
+
         </q-drawer>
 
         <q-page-container>
@@ -183,10 +215,6 @@ export default defineComponent({
     margin-right: 4px;
 }
 
-.navbar {
-    background: $bg-app;
-}
-
 .nav-toolbar {
     color: $dark;
 }
@@ -200,6 +228,38 @@ export default defineComponent({
 
 .toolbar-title {
     font-weight: 900;
+}
+
+.bar-item-title {
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-item:hover {
+    background-color: #f0f0f0;
+    /* Add a subtle hover effect */
+}
+
+.sidebar-icon {
+    margin-right: 12px;
+}
+
+.sidebar-label {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.sidebar-image {
+    position: relative;
 }
 
 </style>

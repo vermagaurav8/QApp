@@ -1,5 +1,7 @@
 // app global css in SCSS form
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap');
+
 .my_card {
   width: 25rem;
   border-radius: 8px;
@@ -14,4 +16,8 @@
 .bg-dark {
   background: $bg-app-dark;
   color: white !important;
+}
+
+*{
+  font-family: 'Nunito Sans', sans-serif;
 }
