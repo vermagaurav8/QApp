@@ -1,7 +1,7 @@
 <template>
-  <q-layout>
+  <q-layout class="home">
 
-    <h3>Hi Home</h3>
+    <p>Home</p>
 
     <q-page-container>
       <router-view />
@@ -10,7 +10,6 @@
 </template>
 
 <script>
-// import Navbar from 'src/components/Navbar.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -20,3 +19,9 @@ export default defineComponent({
     },
 })
 </script>
+
+<style scoped lang="scss">
+  .home {
+    background: $bg-app;
+  }
+</style>
