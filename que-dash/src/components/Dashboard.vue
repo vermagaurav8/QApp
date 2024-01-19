@@ -77,21 +77,45 @@
         <!-- Sidebar -->
         <q-drawer v-model="drawerModel" side="left" show-if-above>
             <q-list>
-                <q-item clickable @click="navigateToPage('Home')" v-close-popup>
+                <!-- HOME -->
+                <q-item clickable @click="navigateToPage('dashboard')" v-close-popup>
                     <q-item-section>
                         <q-item-label>Home</q-item-label>
                     </q-item-section>
                 </q-item>
 
+                <!-- TABULATOR -->
                 <q-item clickable @click="navigateToPage('tabulator')" v-close-popup>
                     <q-item-section>
                         <q-item-label>Tabulator</q-item-label>
                     </q-item-section>
                 </q-item>
 
+                <!-- PROFIILE -->
+                <q-item clickable @click="navigateToPage('profile')" v-close-popup>
+                    <q-item-section>
+                        <q-item-label>Profile</q-item-label>
+                    </q-item-section>
+                </q-item>
+
+                <!-- COPONENTS DROPDOWN MODAL -->
                 <q-item clickable @click="navigateToPage('tabulator')" v-close-popup>
                     <q-item-section>
-                        <q-item-label>Home</q-item-label>
+                        <q-item-label>Components Dropdown</q-item-label>
+                    </q-item-section>
+                </q-item>
+
+                <!-- EXCEPTION DROPDOWN -->
+                <q-item clickable @click="navigateToPage('tabulator')" v-close-popup>
+                    <q-item-section>
+                        <q-item-label>Exception Dropdown</q-item-label>
+                    </q-item-section>
+                </q-item>
+
+                <!-- Settings  -->
+                <q-item clickable @click="navigateToPage('settings')" v-close-popup>
+                    <q-item-section>
+                        <q-item-label>Settingd</q-item-label>
                     </q-item-section>
                 </q-item>
                 <!-- Add more sidebar items as needed -->

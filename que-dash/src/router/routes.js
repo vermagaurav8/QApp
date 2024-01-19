@@ -3,18 +3,36 @@
  *  - To add any new route, we've to define it here.
  */
 
+import MainLayout from "../layouts/MainLayout.vue"
+import Dashboard from "../components/Dashboard.vue";
+
+import Profile from "../pages/Profile.vue";
+import Settings from "../pages/Settings.vue";
+import Triggers from "../pages/Triggers.vue";
+import Modal from "../pages/Modal.vue";
+import Error from "../pages/ErrorNotFound.vue";
+import Tabulator from "../pages/Tabulator.vue";
+import Home from "../pages/Home.vue";
+
+
+
 const routes = [
   {
     path: "/",
-    component: () => import("layouts/MainLayout.vue"),
+    component: () => MainLayout,
   },
   {
     path: "/dashboard",
-    component: () => import("../components/Dashboard.vue"),
+    component: () => Dashboard,
     children: [
-      { path: '', component: () => import("../pages/Home.vue")},
-      { path: '/tabulator', component: () => import("../pages/Tabulator.vue")}
-    ]
+      { path: '', component: () => Home},
+      { path: '/tabulator', component: () => Tabulator},
+      { path: '/profile', component: () => Profile},
+      { path: '/modal', component: () => Modal},
+      { path: '/triggers', component: () => Triggers},
+      { path: '/404', component: () => Error},
+      { path: '/settings', component: () => Settings}
+    ] 
   },
   {
     path: "/:catchAll(.*)*",
