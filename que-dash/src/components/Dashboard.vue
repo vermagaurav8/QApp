@@ -144,7 +144,7 @@
                         <q-icon class="sidebar-icon" name="settings" size="30px" />
                     </q-item-section>
                     <q-item-section>
-                        <q-item-label class="sidebar-label">Settings </q-item-label>
+                        <q-item-label class="sidebar-label">404 </q-item-label>
                     </q-item-section>
                 </q-item>
             </q-list>
