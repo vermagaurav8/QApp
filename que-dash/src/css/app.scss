@@ -14,8 +14,8 @@
 }
 
 .bg-dark {
-  background: #12263f;
-  color: white ;
+  // background: #12263f;
+  // color: white ;
 }
 
 *{
@@ -26,7 +26,7 @@
 .card__dashboard {
   word-wrap: break-word;
   background-clip: border-box;
-  background-color: #fff !important;
+  background-color: #fff ;
   border: 0 solid rgba(0, 0, 0, 0.125);
   border-radius: 1rem;
   display: flex;
@@ -39,3 +39,98 @@
   -webkit-box-shadow: 0 0 0.25rem rgb(8 18 34 / 10%);
   box-shadow: 0 0 0.25rem rgb(8 18 34 / 10%);
 }
+
+
+
+// test
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap");
+:root {
+  font-size: 16px;
+  font-weight: 400;
+  color-scheme: light dark;
+  background-color: #242424;
+  color: #213547 !important;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  font-family: 'Nunito Sans', sans-serif;
+
+}
+
+:root {
+  --bg-app:#{$grey-2};
+  --color-app:#{$color-app};
+  --bg-drawer: white;
+  --bg-card: white;
+  --color-drawer:#67758E;
+  --color-card-title :#6D7378;
+  --color-card-subtitle:#787C91;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+html.dark {
+  --bg-app:#{$bg-app-dark};
+  --color-app: #{$color-app-dark};
+  --bg-drawer: #{$bg-drawer};
+  --bg-card:#{$bg-card};
+  --color-drawer:#a6b0cf;
+  --color-card-title:#{$grey-4};
+  --color-card-subtitle:#{$grey-4};
+}
+
+#app {
+  /* font-family: "Poppins", sans-serif; */
+  // font-family: "Public Sans", sans-serif !important;
+  color: var(--color-app) !important;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+
+.text-muted {
+  color: #878a99;
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+

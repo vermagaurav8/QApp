@@ -1,9 +1,9 @@
 <!-- Navbar and Sidebar Component -->
 
 <template>
-    <q-layout view="lHh Lpr lFf" class="navbar-wrapper" :class="{ 'bg-dark': darkMode }">
+    <q-layout view="lHh Lpr lFf" class="navbar-wrapper">
         <!-- Navbar -->
-        <q-header class="bg-color" :class="{ 'bg-dark': darkMode }">
+        <q-header class="bg-color">
             <q-toolbar class="nav-toolbar">
                 <q-btn dense flat round icon="menu" @click="toggleDrawer" aria-label="Toggle navigation drawer" />
 
@@ -121,12 +121,12 @@
 
                 <!-- COMPONENTS DROPDOWN MODAL -->
                 <q-expansion-item label="Components" icon="menu_open" default-opened class="sidebar-label">
-                    <!-- Modal -->
+                    <!-- Modal
                     <q-item clickable @click="navigateToPage('modal')" v-close-popup>
                         <q-item-section>
                             <q-item-label class="sidebar-label1">- Modals</q-item-label>
                         </q-item-section>
-                    </q-item>
+                    </q-item> -->
 
                     <!-- Trigger -->
                     <q-item clickable @click="navigateToPage('triggers')" v-close-popup>
@@ -141,7 +141,7 @@
                 <!-- SETTINGS -->
                 <q-item class="sidebar-item" clickable @click="navigateToPage('settings')" v-close-popup>
                     <q-item-section avatar>
-                        <q-icon class="sidebar-icon" name="settings" size="30px" />
+                        <q-icon class="sidebar-icon" name="error" size="30px" />
                     </q-item-section>
                     <q-item-section>
                         <q-item-label class="sidebar-label">404 </q-item-label>
@@ -161,22 +161,24 @@
 <script>
 import { ref, defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
+import { useQuasar } from 'quasar';
 
 export default defineComponent({
     name: 'dashboard-component',
     setup() {
+        const $q = useQuasar();
         const router = useRouter();
         const drawerModel = ref(false);
         const userMenuVisible = ref(true);
-        const darkMode = ref(false);
+        // const darkMode = ref(false);
         const currentLang = ref('English');
         const theme = ref('dark_mode')
 
-        const savedDarkMode = localStorage.getItem('darkMode');
-        if (savedDarkMode !== null) {
-            darkMode.value = savedDarkMode === 'true';
-            theme.value = darkMode.value ? 'light_mode' : 'dark_mode';
-        }
+        // const savedDarkMode = localStorage.getItem('darkMode');
+        // if (savedDarkMode !== null) {
+        //     darkMode.value = savedDarkMode === 'true';
+        //     theme.value = darkMode.value ? 'light_mode' : 'dark_mode';
+        // }
 
         const selectLang = (language) => {
             switch (language) {
@@ -204,14 +206,12 @@ export default defineComponent({
         };
 
         const ToggleDarkMode = () => {
-            darkMode.value = !darkMode.value;
-            if (darkMode.value) {
+            $q.dark.toggle();
+            if ($q.dark.isActive) {
                 theme.value = 'light_mode';
             } else {
                 theme.value = 'dark_mode';
             }
-
-            localStorage.setItem('darkMode', darkMode.value.toString());
         }
 
 
@@ -227,8 +227,7 @@ export default defineComponent({
             ToggleDarkMode,
             selectLang,
             theme,
-            currentLang,
-            darkMode
+            currentLang
         };
     },
 });
