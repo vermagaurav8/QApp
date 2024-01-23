@@ -10,7 +10,8 @@
     "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
-    "build": "quasar build"
+    "build": "quasar build",
+    "deploy": "vercel"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
@@ -20,6 +21,7 @@
     "tabulator-tables": "^5.5.2",
     "vue": "^3.0.0",
     "vue-apexcharts": "^1.6.2",
+    "vue-i18n": "^9.9.0",
     "vue-router": "^4.0.0",
     "vue3-apexcharts": "^1.4.4"
   },
